@@ -13,7 +13,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("Welcome to my portfolio");
 });
-app.use(router);
+app.use("/api", router);
 
 app.use(globalError);
 app.use(notFound);
