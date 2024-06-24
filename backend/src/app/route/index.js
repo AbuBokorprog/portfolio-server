@@ -3,6 +3,7 @@ import { aboutRoute } from "../modules/about/about.route.js";
 import { SkillRoute } from "../modules/skills/skills.route.js";
 import { ProjectCategoryRoute } from "../modules/projectCategory/project.category.route.js";
 import { ProjectRoute } from "../modules/projects/projects.route.js";
+import { BlogRoute } from "../modules/blogs/blogs.route.js";
 const router = express.Router();
 
 const appRouter = [
@@ -21,6 +22,10 @@ const appRouter = [
   {
     path: "/projects",
     route: ProjectRoute,
+  },
+  {
+    path: "/blogs",
+    route: BlogRoute,
   },
 ];
 
