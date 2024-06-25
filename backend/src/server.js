@@ -9,7 +9,7 @@ async function main() {
     await mongoose.connect(
       "mongodb+srv://database1abu:nbAzmSC1g0XdwZg6@cluster0.kq57d4a.mongodb.net/abubokor-portfolio?retryWrites=true&w=majority&appName=Cluster0"
     );
-    console.log("hello");
+
     server = app.listen(config.port, () => {
       console.log(`http://localhost:${config.port}`);
     });

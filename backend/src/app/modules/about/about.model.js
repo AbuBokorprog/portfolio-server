@@ -5,6 +5,7 @@ const aboutSchema = new Schema(
     image: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
