@@ -10,7 +10,6 @@ import duplicateError from "../errors/duplicateError.js";
 
 // eslint-disable-next-line no-unused-vars
 export const globalError = (err, req, res, next) => {
-  // console.log(err);
   let message = err | "Something went wrong!";
   let statusCode = httpStatus.BAD_REQUEST | 500;
 
@@ -21,6 +20,7 @@ export const globalError = (err, req, res, next) => {
     },
   ];
 
+  // ------------------------------ Others Error Handling ---------------------------------
   // joi error handling
   if (err instanceof Joi.ValidationError) {
     const simplifiedError = joiValidationError(err);
@@ -36,6 +36,7 @@ export const globalError = (err, req, res, next) => {
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorSources = simplifiedError.errorSources;
+
     // mongoose cast error
   } else if (err instanceof mongoose.Error.CastError) {
     const simplifiedError = mongooseCastError(err);

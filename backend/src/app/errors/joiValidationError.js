@@ -8,7 +8,7 @@ const joiValidationError = (Error) => {
     };
   });
 
-  const message = "Joi error";
+  const message = "Joi validation error";
   const statusCode = httpStatus.BAD_REQUEST;
 
   return {
