@@ -6,6 +6,6 @@ export const createAboutValidationSchema = joi.object({
 });
 
 export const updateAboutValidationSchema = joi.object({
-  image: joi.string(),
-  description: joi.string().required(),
+  image: joi.string().optional(),
+  description: joi.string().optional(),
 });
