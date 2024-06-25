@@ -1,7 +1,10 @@
 import express from "express";
+import { educationControllers } from "./education.controllers";
 const route = express.Router();
-route.post("/");
-route.get("/");
-route.put("/:id");
-route.delete("/:id");
+
+route.post("/", educationControllers.createEducation);
+route.get("/", educationControllers.retrieveAllEducation);
+route.put("/:id", educationControllers.updateEducation);
+route.delete("/:id", educationControllers.deleteEducation);
+
 export const educationRoute = route;
