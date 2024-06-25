@@ -1,5 +1,5 @@
 import express from "express";
-import { experienceControllers } from "./experience.controllers";
+import { experienceControllers } from "./experience.controllers.js";
 const route = express.Router();
 
 route.post("/", experienceControllers.createExperience);

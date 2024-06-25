@@ -1,5 +1,5 @@
 import express from "express";
-import { educationControllers } from "./education.controllers";
+import { educationControllers } from "./education.controllers.js";
 const route = express.Router();
 
 route.post("/", educationControllers.createEducation);

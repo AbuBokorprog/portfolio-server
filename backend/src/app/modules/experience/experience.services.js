@@ -1,10 +1,31 @@
-const createExperience = async () => {};
+import Experience from "./experience.model.js";
 
-const retrieveAllExperience = async () => {};
+const createExperience = async (payload) => {
+  const data = await Experience.create(payload);
 
-const updateExperience = async () => {};
+  return data;
+};
 
-const deleteExperience = async () => {};
+const retrieveAllExperience = async () => {
+  const data = await Experience.find();
+
+  return data;
+};
+
+const updateExperience = async (id, payload) => {
+  const data = await Experience.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  });
+
+  return data;
+};
+
+const deleteExperience = async (id) => {
+  const data = await Experience.create(id);
+
+  return data;
+};
 
 export const experienceServices = {
   createExperience,
