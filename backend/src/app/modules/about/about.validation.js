@@ -1,8 +1,11 @@
 import joi from "joi";
 
-const aboutValidationSchema = joi.object({
+export const createAboutValidationSchema = joi.object({
   image: joi.string(),
   description: joi.string().required(),
 });
 
-export default aboutValidationSchema;
+export const updateAboutValidationSchema = joi.object({
+  image: joi.string(),
+  description: joi.string().required(),
+});
