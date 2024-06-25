@@ -4,6 +4,9 @@ import { SkillRoute } from "../modules/skills/skills.route.js";
 import { ProjectCategoryRoute } from "../modules/projectCategory/project.category.route.js";
 import { ProjectRoute } from "../modules/projects/projects.route.js";
 import { BlogRoute } from "../modules/blogs/blogs.route.js";
+import { educationRoute } from "../modules/education/education.route.js";
+import { experienceRoute } from "../modules/experience/experience.route.js";
+
 const router = express.Router();
 
 const appRouter = [
@@ -26,6 +29,14 @@ const appRouter = [
   {
     path: "/blogs",
     route: BlogRoute,
+  },
+  {
+    path: "/education",
+    route: educationRoute,
+  },
+  {
+    path: "/experience",
+    route: experienceRoute,
   },
 ];
 
