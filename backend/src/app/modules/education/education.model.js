@@ -16,6 +16,11 @@ const educationSchema = new Schema({
     required: true,
     unique: true,
   },
+  isPresent: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   endTime: {
     type: Date,
     required: true,
