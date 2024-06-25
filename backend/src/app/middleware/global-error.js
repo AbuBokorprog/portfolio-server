@@ -2,6 +2,11 @@ import httpStatus from "http-status";
 import config from "../config/index.js";
 import Joi from "joi";
 import mongoose from "mongoose";
+import AppError from "../errors/appError.js";
+import joiValidationError from "../errors/joiValidationError.js";
+import mongooseValidationError from "../errors/mongooseValidationError.js";
+import mongooseCastError from "../errors/mongooseCastError.js";
+import duplicateError from "../errors/duplicateError.js";
 
 // eslint-disable-next-line no-unused-vars
 export const globalError = (err, req, res, next) => {
@@ -16,28 +21,57 @@ export const globalError = (err, req, res, next) => {
     },
   ];
 
+  // joi error handling
   if (err instanceof Joi.ValidationError) {
-    errorSources = err.details.map((e) => {
-      return {
-        path: e.path,
-        message: e.message,
-      };
-    });
+    const simplifiedError = joiValidationError(err);
 
-    message = "Joi error";
-    statusCode = httpStatus.BAD_REQUEST;
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorSources = simplifiedError.errorSources;
+
+    // mongoose validation error
   } else if (err instanceof mongoose.Error.ValidationError) {
-    errorSources = Object.values(err.errors).map((e) => {
-      return {
-        path: e.path,
-        message: e.message,
-      };
-    });
+    const simplifiedError = mongooseValidationError(err);
 
-    message = "Mongoose validation error";
-    statusCode = httpStatus.BAD_REQUEST;
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorSources = simplifiedError.errorSources;
+    // mongoose cast error
   } else if (err instanceof mongoose.Error.CastError) {
-    console.log(err);
+    const simplifiedError = mongooseCastError(err);
+
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorSources = simplifiedError.errorSources;
+
+    // duplicate error
+  } else if (err.code === 11000) {
+    const simplifiedError = duplicateError(err);
+
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorSources = simplifiedError.errorSources;
+
+    // app error
+  } else if (err instanceof AppError) {
+    statusCode = err.statusCode;
+    message = err.message;
+    errorSources = [
+      {
+        path: "",
+        message: err.message,
+      },
+    ];
+
+    // Error
+  } else if (err instanceof Error) {
+    message = err.message;
+    errorSources = [
+      {
+        path: "",
+        message: err.message,
+      },
+    ];
   }
 
   return res.status(statusCode).json({
