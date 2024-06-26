@@ -7,6 +7,7 @@ import { BlogRoute } from "../modules/blogs/blogs.route.js";
 import { educationRoute } from "../modules/education/education.route.js";
 import { experienceRoute } from "../modules/experience/experience.route.js";
 import { userRoute } from "../modules/users/user.route.js";
+import { authRoute } from "../modules/auth/auth.route.js";
 
 const router = express.Router();
 
@@ -14,6 +15,10 @@ const appRouter = [
   {
     path: "/user",
     route: userRoute,
+  },
+  {
+    path: "/auth",
+    route: authRoute,
   },
   {
     path: "/about",
