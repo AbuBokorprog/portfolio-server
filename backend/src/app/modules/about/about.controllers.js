@@ -26,7 +26,17 @@ const retrieveAllAbout = catchAsync(async (req, res) => {
   });
 });
 
-const updateAbout = catchAsync(async () => {});
+const updateAbout = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const data = await aboutServices.updateAbout(id, req.body);
+
+  successResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "About update successfully!",
+    data,
+  });
+});
 
 const deleteAbout = catchAsync(async (req, res) => {
   const { id } = req.params;

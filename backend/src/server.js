@@ -6,9 +6,7 @@ let server;
 
 async function main() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://database1abu:nbAzmSC1g0XdwZg6@cluster0.kq57d4a.mongodb.net/abubokor-portfolio?retryWrites=true&w=majority&appName=Cluster0"
-    );
+    await mongoose.connect(config.database);
 
     server = app.listen(config.port, () => {
       console.log(`http://localhost:${config.port}`);
