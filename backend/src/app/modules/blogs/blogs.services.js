@@ -35,7 +35,7 @@ const updateBlogs = async (id, payload) => {
   });
 
   if (!data) {
-    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+    throw new AppError(httpStatus.NOT_FOUND, "Blog update failed!");
   }
 
   return data;
@@ -45,7 +45,7 @@ const deleteBlogs = async (id) => {
   const data = await Blogs.findByIdAndDelete(id);
 
   if (!data) {
-    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+    throw new AppError(httpStatus.NOT_FOUND, "Blog deleted failed!");
   }
 
   return data;

@@ -29,7 +29,7 @@ const updateAbout = async (id, payload) => {
   });
 
   if (!data) {
-    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+    throw new AppError(httpStatus.NOT_FOUND, "About update failed!");
   }
 
   return data;
@@ -39,7 +39,7 @@ const deleteAbout = async (id) => {
   const data = await About.findByIdAndDelete(id);
 
   if (!data) {
-    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+    throw new AppError(httpStatus.NOT_FOUND, "About delete failed!");
   }
 
   return data;

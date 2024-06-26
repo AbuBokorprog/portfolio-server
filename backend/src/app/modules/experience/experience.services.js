@@ -29,7 +29,7 @@ const updateExperience = async (id, payload) => {
   });
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
+    throw new AppError(httpStatus.BAD_REQUEST, "Experience update failed!");
   }
 
   return data;
@@ -39,7 +39,7 @@ const deleteExperience = async (id) => {
   const data = await Experience.create(id);
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
+    throw new AppError(httpStatus.BAD_REQUEST, "Experience delete failed!");
   }
 
   return data;

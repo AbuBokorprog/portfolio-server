@@ -29,7 +29,7 @@ const updateEducation = async (id, payload) => {
   });
 
   if (!data) {
-    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+    throw new AppError(httpStatus.NOT_FOUND, "Education update failed!");
   }
 
   return data;
@@ -39,7 +39,7 @@ const deleteEducation = async (id) => {
   const data = await Education.findByIdAndDelete(id);
 
   if (!data) {
-    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+    throw new AppError(httpStatus.NOT_FOUND, "Education delete failed!");
   }
 
   return data;

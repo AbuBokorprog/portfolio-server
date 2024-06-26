@@ -25,6 +25,7 @@ const retrieveAllProjects = catchAsync(async (req, res) => {
     data,
   });
 });
+
 const retrieveSingleProject = catchAsync(async (req, res) => {
   const { id } = req.params;
   const data = await ProjectsServices.retrieveSingleProject(id);

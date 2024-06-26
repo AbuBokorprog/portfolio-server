@@ -26,7 +26,17 @@ const retrieveAllSkill = catchAsync(async (req, res) => {
   });
 });
 
-const updateSkill = catchAsync(async () => {});
+const updateSkill = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const data = await SkillServices.updateSkill(id, req.body);
+
+  successResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Skill updated successfully!",
+    data,
+  });
+});
 
 const deleteSkill = catchAsync(async (req, res) => {
   const { id } = req.params;

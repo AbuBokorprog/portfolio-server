@@ -32,7 +32,10 @@ const updateProjectCategory = async (id, payload) => {
   });
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Project category update failed!"
+    );
   }
 
   return data;
@@ -42,7 +45,10 @@ const deleteProjectCategory = async (id) => {
   const data = await ProjectCategory.findByIdAndDelete(id);
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Project category delete failed!"
+    );
   }
 
   return data;
