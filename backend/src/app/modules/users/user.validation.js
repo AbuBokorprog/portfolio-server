@@ -6,6 +6,7 @@ export const createUserValidationSchema = Joi.object({
   password: Joi.string().required(),
   phone: Joi.string().required(),
   image: Joi.string().optional(),
+  role: Joi.string().required(),
 });
 
 export const updateUserValidationSchema = Joi.object({
@@ -14,4 +15,5 @@ export const updateUserValidationSchema = Joi.object({
   password: Joi.string().optional(),
   phone: Joi.string().optional(),
   image: Joi.string().optional(),
+  role: Joi.string().optional(),
 });

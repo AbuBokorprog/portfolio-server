@@ -4,7 +4,6 @@ const projectCategorySchema = new Schema({
   category_name: {
     type: String,
     required: true,
-    unique: true,
   },
 });
 
