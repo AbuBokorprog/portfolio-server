@@ -1,9 +1,9 @@
-import { catchAsync } from "../../utils/catchAsync";
-import { successResponse } from "../../utils/sucessResponse";
-import { authServices } from "./auth.services";
+import { catchAsync } from "../../utils/catchAsync.js";
+import { successResponse } from "../../utils/sucessResponse.js";
+import { authServices } from "./auth.services.js";
 
 const loginUser = catchAsync(async (req, res) => {
-  const data = authServices.loginUser(req.body);
+  const data = await authServices.loginUser(req.body);
 
   successResponse(res, {
     statusCode: 200,
