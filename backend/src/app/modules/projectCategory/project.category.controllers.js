@@ -26,7 +26,19 @@ const retrieveAllProjectCategory = catchAsync(async (req, res) => {
   });
 });
 
-const updateProjectCategory = catchAsync(async () => {});
+const updateProjectCategory = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const newData = req.body;
+
+  const data = await ProjectCategoryServices.updateProjectCategory(id, newData);
+
+  successResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Project category updated successfully!",
+    data,
+  });
+});
 
 const deleteProjectCategory = catchAsync(async (req, res) => {
   const { id } = req.params;
