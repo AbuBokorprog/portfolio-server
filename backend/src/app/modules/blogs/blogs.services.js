@@ -5,6 +5,10 @@ import Blogs from "./blogs.model.js";
 const createBlogs = async (payload) => {
   const data = await Blogs.create(payload);
 
+  if (!data) {
+    throw new AppError(httpStatus.BAD_REQUEST, "Blog created failed!");
+  }
+
   return data;
 };
 

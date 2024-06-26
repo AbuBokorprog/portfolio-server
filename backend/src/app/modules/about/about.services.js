@@ -5,6 +5,10 @@ import { About } from "./about.model.js";
 const createAbout = async (payload) => {
   const data = await About.create(payload);
 
+  if (!data) {
+    throw new AppError(httpStatus.BAD_REQUEST, "About created failed!");
+  }
+
   return data;
 };
 
