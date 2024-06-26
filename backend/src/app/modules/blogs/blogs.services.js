@@ -1,3 +1,5 @@
+import httpStatus from "http-status";
+import AppError from "../../errors/appError.js";
 import Blogs from "./blogs.model.js";
 
 const createBlogs = async (payload) => {
@@ -7,14 +9,18 @@ const createBlogs = async (payload) => {
 };
 
 const retrieveAllBlogs = async () => {
-  const data = await Blogs.find();
-
+  const data = await Blogs.find().sort({ createdAt: -1 });
+  if (!data | (data.length < 1)) {
+    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+  }
   return data;
 };
 
 const retrieveSingleBlog = async (id) => {
   const data = await Blogs.findById(id);
-
+  if (!data) {
+    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+  }
   return data;
 };
 
@@ -24,11 +30,20 @@ const updateBlogs = async (id, payload) => {
     runValidators: true,
   });
 
+  if (!data) {
+    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+  }
+
   return data;
 };
 
 const deleteBlogs = async (id) => {
   const data = await Blogs.findByIdAndDelete(id);
+
+  if (!data) {
+    throw new AppError(httpStatus.NOT_FOUND, "No data found!");
+  }
+
   return data;
 };
 

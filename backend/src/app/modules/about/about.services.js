@@ -9,7 +9,7 @@ const createAbout = async (payload) => {
 };
 
 const retrieveAllAbout = async () => {
-  const data = await About.find();
+  const data = await About.find().sort({ createdAt: -1 });
 
   if (!data || data.length < 1) {
     throw new AppError(httpStatus.NOT_FOUND, "No data found!");
