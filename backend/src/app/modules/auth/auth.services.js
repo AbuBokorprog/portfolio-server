@@ -2,6 +2,9 @@ import httpStatus from "http-status";
 import AppError from "../../errors/appError.js";
 import User from "../users/users.model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import config from "../../config/index.js";
+
 const loginUser = async (payload) => {
   const { email, password } = payload;
 
@@ -17,7 +20,20 @@ const loginUser = async (payload) => {
     throw new AppError(httpStatus.UNAUTHORIZED, "Password mismatched");
   }
 
-  return isMatch;
+  const userInfo = {
+    name: data.name,
+    email: data.email,
+    role: data.role,
+  };
+
+  const Access_Token = jwt.sign(userInfo, config.accessToken, {
+    expiresIn: config.expiresIn,
+  });
+
+  return {
+    isMatch,
+    Access_Token,
+  };
 };
 
 export const authServices = { loginUser };

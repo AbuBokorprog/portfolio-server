@@ -1,6 +1,7 @@
 import { model, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import config from "../../config/index.js";
+
 const userSchema = new Schema({
   name: {
     type: String,
@@ -20,6 +21,10 @@ const userSchema = new Schema({
     required: true,
   },
   image: {
+    type: String,
+    required: true,
+  },
+  role: {
     type: String,
     required: true,
   },
