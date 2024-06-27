@@ -6,19 +6,21 @@ import {
   updateProjectValidation,
 } from "./project.validation.js";
 import Auth from "../../middleware/auth.js";
+import { upload } from "../../utils/sendingImageToCloudinary.js";
 
 const route = express.Router();
 
 route.post(
   "/",
   Auth("admin"),
+  upload.single("file"),
   validateRequest(createProjectValidation),
   ProjectsControllers.createProjects
 );
 
-route.get("/", Auth("admin"), ProjectsControllers.retrieveAllProjects);
+route.get("/", ProjectsControllers.retrieveAllProjects);
 
-route.get("/:id", Auth("admin"), ProjectsControllers.retrieveSingleProject);
+route.get("/:id", ProjectsControllers.retrieveSingleProject);
 
 route.put(
   "/:id",

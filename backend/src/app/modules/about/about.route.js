@@ -15,7 +15,7 @@ route.post(
   aboutControllers.createAbout
 );
 
-route.get("/", Auth("admin"), aboutControllers.retrieveAllAbout);
+route.get("/", aboutControllers.retrieveAllAbout);
 
 route.put(
   "/:id",

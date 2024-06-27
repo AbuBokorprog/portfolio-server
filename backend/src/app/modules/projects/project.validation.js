@@ -2,12 +2,12 @@ import Joi from "joi";
 
 export const createProjectValidation = Joi.object({
   categoryId: Joi.string().required(),
-  thumbnail: Joi.string().required(),
   projects_name: Joi.string().required(),
   short_description: Joi.string().required(),
   skills: Joi.array().required(),
   github_url: Joi.string().required(),
   View_url: Joi.required().required(),
+  thumbnail: Joi.string().optional(),
 });
 
 export const updateProjectValidation = Joi.object({

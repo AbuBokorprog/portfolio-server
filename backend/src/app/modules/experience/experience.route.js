@@ -14,7 +14,7 @@ route.post(
   validateRequest(createExperienceValidationSchema),
   experienceControllers.createExperience
 );
-route.get("/", Auth("admin"), experienceControllers.retrieveAllExperience);
+route.get("/", experienceControllers.retrieveAllExperience);
 route.put(
   "/:id",
   Auth("admin"),

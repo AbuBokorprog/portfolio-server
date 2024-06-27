@@ -5,7 +5,11 @@ import { ProjectsServices } from "./projects.services.js";
 const createProjects = catchAsync(async (req, res) => {
   const newData = req.body;
 
-  const data = await ProjectsServices.createProjects(newData);
+  const response = JSON.parse(newData.data);
+  req.body = response;
+  console.log(response);
+
+  const data = await ProjectsServices.createProjects(req.file, response);
 
   successResponse(res, {
     statusCode: 200,

@@ -14,7 +14,7 @@ route.post(
   validateRequest(createEducationValidationSchema),
   educationControllers.createEducation
 );
-route.get("/", Auth("admin"), educationControllers.retrieveAllEducation);
+route.get("/", educationControllers.retrieveAllEducation);
 route.put(
   "/:id",
   Auth("admin"),

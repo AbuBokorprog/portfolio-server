@@ -15,8 +15,8 @@ route.post(
   validateRequest(createBlogValidationSchema),
   BlogsControllers.createBlogs
 );
-route.get("/", Auth("admin"), BlogsControllers.retrieveAllBlogs);
-route.get("/:id", Auth("admin"), BlogsControllers.retrieveSingleBlog);
+route.get("/", BlogsControllers.retrieveAllBlogs);
+route.get("/:id", BlogsControllers.retrieveSingleBlog);
 route.put(
   "/:id",
   Auth("admin"),

@@ -18,7 +18,7 @@ route.post(
 
 route.get(
   "/",
-  Auth("admin"),
+
   ProjectCategoryControllers.retrieveAllProjectCategory
 );
 
