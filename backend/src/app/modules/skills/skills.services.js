@@ -1,8 +1,15 @@
 import httpStatus from "http-status";
 import AppError from "../../errors/appError.js";
 import Skill from "./skills.model.js";
+import { sendImageToCloudinary } from "../../utils/sendingImageToCloudinary.js";
 
-const createSkill = async (payload) => {
+const createSkill = async (file, payload) => {
+  const imageName = payload?.technology_name;
+  const path = file?.path;
+  const response = await sendImageToCloudinary(imageName, path);
+  const secureUrl = response.secure_url;
+  payload.icon = secureUrl;
+
   const data = await Skill.create(payload);
 
   if (!data) {
@@ -22,7 +29,23 @@ const retrieveAllSkill = async () => {
   return data;
 };
 
-const updateSkill = async (id, payload) => {
+const updateSkill = async (id, file, payload) => {
+  const previousSkill = await Skill.findById(id);
+
+  if (!previousSkill) {
+    throw new AppError(httpStatus.NOT_FOUND, "Skill not found!");
+  }
+
+  if (file.path) {
+    const imageName = payload?.technology_name
+      ? payload?.technology_name
+      : previousSkill?.technology_name;
+    const path = file?.path;
+    const response = await sendImageToCloudinary(imageName, path);
+    const secureUrl = response.secure_url;
+    payload.icon = secureUrl;
+  }
+
   const data = await Skill.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,

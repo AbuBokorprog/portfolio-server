@@ -3,14 +3,12 @@ import { successResponse } from "../../utils/sucessResponse.js";
 import { ProjectCategoryServices } from "./project.category.services.js";
 
 const createProjectCategory = catchAsync(async (req, res) => {
-  const newData = req.body;
-
-  const data = await ProjectCategoryServices.createProjectCategory(newData);
+  const data = await ProjectCategoryServices.createProjectCategory(req.body);
 
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "ProjectCategory created successfully!",
+    message: "Project Category created successfully!",
     data: data,
   });
 });

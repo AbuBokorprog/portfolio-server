@@ -46,11 +46,11 @@ const retrieveSingleProject = async (id) => {
 const updateProjects = async (id, file, payload) => {
   const previousData = await Projects.findById(id);
 
-  if (previousData) {
+  if (!previousData) {
     throw new AppError(httpStatus.NOT_FOUND, "Project not found!");
   }
 
-  if (payload?.thumbnail) {
+  if (file.path) {
     const imageName = payload?.projects_name
       ? payload?.projects_name
       : previousData.projects_name;

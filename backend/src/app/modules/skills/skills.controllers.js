@@ -5,7 +5,7 @@ import { SkillServices } from "./skills.services.js";
 const createSkill = catchAsync(async (req, res) => {
   const newData = req.body;
 
-  const data = await SkillServices.createSkill(newData);
+  const data = await SkillServices.createSkill(req.file, newData);
 
   successResponse(res, {
     statusCode: 200,
@@ -28,7 +28,7 @@ const retrieveAllSkill = catchAsync(async (req, res) => {
 
 const updateSkill = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const data = await SkillServices.updateSkill(id, req.body);
+  const data = await SkillServices.updateSkill(id, req.file, req.body);
 
   successResponse(res, {
     statusCode: 200,

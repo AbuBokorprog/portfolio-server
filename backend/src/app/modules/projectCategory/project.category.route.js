@@ -16,11 +16,7 @@ route.post(
   ProjectCategoryControllers.createProjectCategory
 );
 
-route.get(
-  "/",
-
-  ProjectCategoryControllers.retrieveAllProjectCategory
-);
+route.get("/", ProjectCategoryControllers.retrieveAllProjectCategory);
 
 route.put(
   "/:id",
