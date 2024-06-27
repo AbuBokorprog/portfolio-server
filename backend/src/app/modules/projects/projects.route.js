@@ -14,6 +14,10 @@ route.post(
   "/",
   Auth("admin"),
   upload.single("file"),
+  (req, res, next) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
   validateRequest(createProjectValidation),
   ProjectsControllers.createProjects
 );

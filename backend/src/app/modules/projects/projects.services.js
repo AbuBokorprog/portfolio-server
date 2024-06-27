@@ -4,11 +4,16 @@ import Projects from "./projects.model.js";
 import { sendImageToCloudinary } from "../../utils/sendingImageToCloudinary.js";
 
 const createProjects = async (file, payload) => {
+  // image name
   const imageName = `${payload.projects_name}`;
+  // path
   const path = file?.path;
+  // save cloudinary
   const response = await sendImageToCloudinary(imageName, path);
+
   const secureUrl = response.secure_url;
   payload.thumbnail = secureUrl;
+
   const data = await Projects.create(payload);
 
   if (!data) {
