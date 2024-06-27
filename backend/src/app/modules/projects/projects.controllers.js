@@ -3,13 +3,7 @@ import { successResponse } from "../../utils/sucessResponse.js";
 import { ProjectsServices } from "./projects.services.js";
 
 const createProjects = catchAsync(async (req, res) => {
-  const newData = req.body;
-
-  const response = JSON.parse(newData.data);
-  req.body = response;
-  console.log(response);
-
-  const data = await ProjectsServices.createProjects(req.file, response);
+  const data = await ProjectsServices.createProjects(req.file, req.body);
 
   successResponse(res, {
     statusCode: 200,
@@ -45,7 +39,7 @@ const retrieveSingleProject = catchAsync(async (req, res) => {
 const updateProjects = catchAsync(async (req, res) => {
   const { id } = req.params;
   const newData = req.body;
-  const data = await ProjectsServices.updateProjects(id, newData);
+  const data = await ProjectsServices.updateProjects(id, req.file, newData);
 
   successResponse(res, {
     statusCode: 200,

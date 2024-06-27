@@ -24,7 +24,7 @@ const createProjects = async (file, payload) => {
 };
 
 const retrieveAllProjects = async () => {
-  const data = await Projects.find();
+  const data = await Projects.find().populate("categoryId");
 
   if (!data | (data.length < 1)) {
     throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
@@ -34,7 +34,7 @@ const retrieveAllProjects = async () => {
 };
 
 const retrieveSingleProject = async (id) => {
-  const data = await Projects.findById(id);
+  const data = await Projects.findById(id).populate("categoryId");
 
   if (!data) {
     throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
@@ -43,7 +43,23 @@ const retrieveSingleProject = async (id) => {
   return data;
 };
 
-const updateProjects = async (id, payload) => {
+const updateProjects = async (id, file, payload) => {
+  const previousData = await Projects.findById(id);
+
+  if (previousData) {
+    throw new AppError(httpStatus.NOT_FOUND, "Project not found!");
+  }
+
+  if (payload?.thumbnail) {
+    const imageName = payload?.projects_name
+      ? payload?.projects_name
+      : previousData.projects_name;
+    const path = file?.path;
+    const response = await sendImageToCloudinary(imageName, path);
+    const secureUrl = response.secure_url;
+    payload.thumbnail = secureUrl;
+  }
+
   const data = await Projects.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,

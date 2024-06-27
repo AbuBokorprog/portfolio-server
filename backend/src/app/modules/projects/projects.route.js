@@ -29,6 +29,11 @@ route.get("/:id", ProjectsControllers.retrieveSingleProject);
 route.put(
   "/:id",
   Auth("admin"),
+  upload.single("file"),
+  (req, res, next) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
   validateRequest(updateProjectValidation),
   ProjectsControllers.updateProjects
 );
