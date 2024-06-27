@@ -4,7 +4,7 @@ import { userServices } from "./users.services.js";
 
 const createUser = catchAsync(async (req, res) => {
   const userData = req.body;
-  const data = await userServices.createUser(userData);
+  const data = await userServices.createUser(req.file, userData);
 
   successResponse(res, {
     statusCode: 200,
