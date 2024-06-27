@@ -6,11 +6,17 @@ import {
   updateAboutValidationSchema,
 } from "../about/about.validation.js";
 import Auth from "../../middleware/auth.js";
+import { upload } from "../../utils/sendingImageToCloudinary.js";
 const route = express.Router();
 
 route.post(
   "/",
   Auth("admin"),
+  upload.single("file"),
+  (req, res, next) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
   validateRequest(createAboutValidationSchema),
   aboutControllers.createAbout
 );
@@ -20,6 +26,11 @@ route.get("/", aboutControllers.retrieveAllAbout);
 route.put(
   "/:id",
   Auth("admin"),
+  upload.single("file"),
+  (req, res, next) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
   validateRequest(updateAboutValidationSchema),
   aboutControllers.updateAbout
 );

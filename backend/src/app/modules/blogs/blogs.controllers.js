@@ -5,7 +5,7 @@ import { BlogsServices } from "./blogs.services.js";
 const createBlogs = catchAsync(async (req, res) => {
   const newData = req.body;
 
-  const data = await BlogsServices.createBlogs(newData);
+  const data = await BlogsServices.createBlogs(req.file, newData);
 
   successResponse(res, {
     statusCode: 200,
@@ -27,7 +27,7 @@ const retrieveAllBlogs = catchAsync(async (req, res) => {
 });
 const retrieveSingleBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const data = await BlogsServices.retrieveSingleBlogs(id);
+  const data = await BlogsServices.retrieveSingleBlog(id);
 
   successResponse(res, {
     statusCode: 200,
@@ -40,7 +40,7 @@ const retrieveSingleBlog = catchAsync(async (req, res) => {
 const updateBlogs = catchAsync(async (req, res) => {
   const { id } = req.params;
   const newData = req.body;
-  const data = await BlogsServices.updateBlogs(id, newData);
+  const data = await BlogsServices.updateBlogs(id, req?.file, newData);
 
   successResponse(res, {
     statusCode: 200,

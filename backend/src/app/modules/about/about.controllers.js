@@ -5,7 +5,7 @@ import { aboutServices } from "./about.services.js";
 const createAbout = catchAsync(async (req, res) => {
   const newData = req.body;
 
-  const data = await aboutServices.createAbout(newData);
+  const data = await aboutServices.createAbout(req.file, newData);
 
   successResponse(res, {
     statusCode: 200,
@@ -28,7 +28,7 @@ const retrieveAllAbout = catchAsync(async (req, res) => {
 
 const updateAbout = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const data = await aboutServices.updateAbout(id, req.body);
+  const data = await aboutServices.updateAbout(id, req.file, req.body);
 
   successResponse(res, {
     statusCode: 200,

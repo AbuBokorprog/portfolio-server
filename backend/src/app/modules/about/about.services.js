@@ -1,8 +1,15 @@
 import httpStatus from "http-status";
 import AppError from "../../errors/appError.js";
 import { About } from "./about.model.js";
+import { sendImageToCloudinary } from "../../utils/sendingImageToCloudinary.js";
 
-const createAbout = async (payload) => {
+const createAbout = async (file, payload) => {
+  const imageName = "abubokor";
+  const path = file?.path;
+  const response = await sendImageToCloudinary(imageName, path);
+  const secureUrl = response.secure_url;
+  payload.image = secureUrl;
+
   const data = await About.create(payload);
 
   if (!data) {
@@ -22,7 +29,15 @@ const retrieveAllAbout = async () => {
   return data;
 };
 
-const updateAbout = async (id, payload) => {
+const updateAbout = async (id, file, payload) => {
+  if (file) {
+    const imageName = "abubokor";
+    const path = file?.path;
+    const response = await sendImageToCloudinary(imageName, path);
+    const secureUrl = response.secure_url;
+    payload.image = secureUrl;
+  }
+
   const data = await About.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,

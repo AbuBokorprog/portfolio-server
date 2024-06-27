@@ -1,8 +1,15 @@
 import httpStatus from "http-status";
 import AppError from "../../errors/appError.js";
 import Blogs from "./blogs.model.js";
+import { sendImageToCloudinary } from "../../utils/sendingImageToCloudinary.js";
 
-const createBlogs = async (payload) => {
+const createBlogs = async (file, payload) => {
+  const imageName = payload?.title;
+  const path = file?.path;
+  const response = await sendImageToCloudinary(imageName, path);
+  const secureUrl = response.secureUrl;
+  payload.thumbnail = secureUrl;
+
   const data = await Blogs.create(payload);
 
   if (!data) {
@@ -28,7 +35,21 @@ const retrieveSingleBlog = async (id) => {
   return data;
 };
 
-const updateBlogs = async (id, payload) => {
+const updateBlogs = async (id, file, payload) => {
+  const currentBlog = await Blogs.findById(id);
+
+  if (!currentBlog) {
+    throw new AppError(httpStatus.NOT_FOUND, "Blog not found!");
+  }
+
+  if (file?.path) {
+    const imageName = payload?.title ? payload?.title : currentBlog.title;
+    const path = file?.path;
+    const response = await sendImageToCloudinary(imageName, path);
+    const secureUrl = response.secure_url;
+    payload.thumbnail = secureUrl;
+  }
+
   const data = await Blogs.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
