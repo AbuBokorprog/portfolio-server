@@ -4,6 +4,7 @@ import { authServices } from "./auth.services.js";
 
 const loginUser = catchAsync(async (req, res) => {
   const data = await authServices.loginUser(req.body);
+  res.setHeader("Authorization", `Bearer ${data.Access_Token}`);
 
   successResponse(res, {
     statusCode: 200,
