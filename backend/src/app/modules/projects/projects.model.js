@@ -29,7 +29,7 @@ const projectsSchema = new Schema(
       type: String,
       unique: true,
     },
-    View_url: {
+    view_url: {
       type: String,
       required: true,
       unique: true,
