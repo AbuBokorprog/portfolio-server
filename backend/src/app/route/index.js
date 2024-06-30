@@ -8,6 +8,7 @@ import { educationRoute } from "../modules/education/education.route.js";
 import { experienceRoute } from "../modules/experience/experience.route.js";
 import { userRoute } from "../modules/users/user.route.js";
 import { authRoute } from "../modules/auth/auth.route.js";
+import { SendMailRoute } from "../modules/sendEmail/send.mail.route.js";
 
 const router = express.Router();
 
@@ -47,6 +48,10 @@ const appRouter = [
   {
     path: "/experience",
     route: experienceRoute,
+  },
+  {
+    path: "/send-mail",
+    route: SendMailRoute,
   },
 ];
 
