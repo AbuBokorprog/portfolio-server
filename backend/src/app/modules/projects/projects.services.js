@@ -24,7 +24,9 @@ const createProjects = async (file, payload) => {
 };
 
 const retrieveAllProjects = async () => {
-  const data = await Projects.find().populate("categoryId");
+  const data = await Projects.find()
+    .populate("categoryId") // Replace 'categoryId' with the actual field you want to populate
+    .sort({ createdAt: -1 }); // Use -1 for descending order if you want the newest first
 
   if (!data | (data.length < 1)) {
     throw new AppError(httpStatus.BAD_REQUEST, "No data found!");

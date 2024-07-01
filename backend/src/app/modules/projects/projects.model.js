@@ -18,8 +18,8 @@ const projectsSchema = new Schema(
     short_description: {
       type: String,
       required: [true, "Short description are required"],
-      // minLength: [200, "Short description have to minimum 200 character."],
-      // maxLength: [350, "Short description have to maximum 350 character."],
+      minLength: [200, "Short description have to minimum 200 character."],
+      maxLength: [450, "Short description have to maximum 450 character."],
     },
     skills: {
       type: Array,
@@ -27,12 +27,10 @@ const projectsSchema = new Schema(
     },
     github_url: {
       type: String,
-      unique: true,
     },
     view_url: {
       type: String,
       required: true,
-      unique: true,
     },
   },
   {

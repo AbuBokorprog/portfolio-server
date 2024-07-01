@@ -20,7 +20,7 @@ const createSkill = async (file, payload) => {
 };
 
 const retrieveAllSkill = async () => {
-  const data = await Skill.find();
+  const data = await Skill.find().sort({ createdAt: 1 });
 
   if (!data | (data.length < 1)) {
     throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
