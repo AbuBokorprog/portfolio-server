@@ -4,17 +4,10 @@ const experienceSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
-  },
-  short_description: {
-    type: String,
-    required: true,
-    unique: true,
   },
   startTime: {
     type: Date,
     required: true,
-    unique: true,
   },
   isPresent: {
     type: Boolean,
@@ -24,6 +17,20 @@ const experienceSchema = new Schema({
   endTime: {
     type: Date,
     required: true,
+  },
+  company_name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  company_location: {
+    type: String,
+    required: true,
+  },
+  short_description: {
+    type: String,
+    required: true,
+    unique: true,
   },
 });
 
