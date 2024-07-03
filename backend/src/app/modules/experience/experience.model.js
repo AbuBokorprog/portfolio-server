@@ -16,7 +16,6 @@ const experienceSchema = new Schema({
   },
   endTime: {
     type: Date,
-    required: true,
   },
   company_name: {
     type: String,

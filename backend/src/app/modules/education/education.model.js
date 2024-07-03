@@ -6,15 +6,9 @@ const educationSchema = new Schema({
     required: true,
     unique: true,
   },
-  short_description: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   startTime: {
     type: Date,
     required: true,
-    unique: true,
   },
   isPresent: {
     type: Boolean,
@@ -23,7 +17,19 @@ const educationSchema = new Schema({
   },
   endTime: {
     type: Date,
+  },
+  institute_name: {
+    type: String,
     required: true,
+  },
+  institute_location: {
+    type: String,
+    required: true,
+  },
+  short_description: {
+    type: String,
+    required: true,
+    unique: true,
   },
 });
 
