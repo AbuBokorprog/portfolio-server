@@ -12,6 +12,8 @@ export const createEducationValidationSchema = Joi.object({
 
 export const updateEducationValidationSchema = Joi.object({
   degree: Joi.string().optional(),
+  institute_name: Joi.string().optional(),
+  institute_location: Joi.string().optional(),
   short_description: Joi.string().optional(),
   startTime: Joi.date().optional(),
   isPresent: Joi.boolean().optional(),
