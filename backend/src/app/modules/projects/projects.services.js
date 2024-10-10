@@ -1,7 +1,7 @@
-import httpStatus from "http-status";
-import AppError from "../../errors/appError.js";
-import Projects from "./projects.model.js";
-import { sendImageToCloudinary } from "../../utils/sendingImageToCloudinary.js";
+import httpStatus from 'http-status';
+import AppError from '../../errors/appError.js';
+import Projects from './projects.model.js';
+import { sendImageToCloudinary } from '../../utils/sendingImageToCloudinary.js';
 
 const createProjects = async (file, payload) => {
   // image name
@@ -17,7 +17,7 @@ const createProjects = async (file, payload) => {
   const data = await Projects.create(payload);
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "Project created failed!");
+    throw new AppError(httpStatus.BAD_REQUEST, 'Project created failed!');
   }
 
   return data;
@@ -25,21 +25,21 @@ const createProjects = async (file, payload) => {
 
 const retrieveAllProjects = async () => {
   const data = await Projects.find()
-    .populate("categoryId") // Replace 'categoryId' with the actual field you want to populate
+    .populate('categoryId') // Replace 'categoryId' with the actual field you want to populate
     .sort({ createdAt: -1 }); // Use -1 for descending order if you want the newest first
 
   if (!data | (data.length < 1)) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
+    throw new AppError(httpStatus.BAD_REQUEST, 'No data found!');
   }
 
   return data;
 };
 
 const retrieveSingleProject = async (id) => {
-  const data = await Projects.findById(id).populate("categoryId");
+  const data = await Projects.findById(id).populate('categoryId');
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No data found!");
+    throw new AppError(httpStatus.BAD_REQUEST, 'No data found!');
   }
 
   return data;
@@ -49,7 +49,7 @@ const updateProjects = async (id, file, payload) => {
   const previousData = await Projects.findById(id);
 
   if (!previousData) {
-    throw new AppError(httpStatus.NOT_FOUND, "Project not found!");
+    throw new AppError(httpStatus.NOT_FOUND, 'Project not found!');
   }
 
   if (file.path) {
@@ -68,7 +68,7 @@ const updateProjects = async (id, file, payload) => {
   });
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "Project update failed!");
+    throw new AppError(httpStatus.BAD_REQUEST, 'Project update failed!');
   }
 
   return data;
@@ -78,7 +78,7 @@ const deleteProjects = async (id) => {
   const data = await Projects.findByIdAndDelete(id);
 
   if (!data) {
-    throw new AppError(httpStatus.BAD_REQUEST, "Project delete failed!");
+    throw new AppError(httpStatus.BAD_REQUEST, 'Project delete failed!');
   }
 
   return data;

@@ -1,6 +1,6 @@
-import { catchAsync } from "../../utils/catchAsync.js";
-import { successResponse } from "../../utils/sucessResponse.js";
-import { ProjectsServices } from "./projects.services.js";
+import { catchAsync } from '../../utils/catchAsync.js';
+import { successResponse } from '../../utils/sucessResponse.js';
+import { ProjectsServices } from './projects.services.js';
 
 const createProjects = catchAsync(async (req, res) => {
   const data = await ProjectsServices.createProjects(req.file, req.body);
@@ -8,7 +8,7 @@ const createProjects = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Projects created successfully!",
+    message: 'Projects created successfully!',
     data: data,
   });
 });
@@ -19,7 +19,7 @@ const retrieveAllProjects = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Retrieve all successfully!",
+    message: 'Retrieve all successfully!',
     data,
   });
 });
@@ -31,7 +31,7 @@ const retrieveSingleProject = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Retrieve single project successfully!",
+    message: 'Retrieve single project successfully!',
     data,
   });
 });
@@ -44,7 +44,7 @@ const updateProjects = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "project update successfully!",
+    message: 'project update successfully!',
     data,
   });
 });
@@ -57,7 +57,7 @@ const deleteProjects = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Projects deleted successfully!",
+    message: 'Projects deleted successfully!',
     data,
   });
 });
