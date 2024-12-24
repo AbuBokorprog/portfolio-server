@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from 'mongoose';
 
 const blogsSchema = new Schema(
   {
@@ -12,7 +12,12 @@ const blogsSchema = new Schema(
       unique: true,
       required: true,
     },
-    articles: {
+    categoryId: {
+      type: Schema.Types.ObjectId,
+      required: [true, 'CategoryId are required'],
+      ref: 'project-category',
+    },
+    description: {
       type: String,
       required: true,
     },
@@ -22,5 +27,5 @@ const blogsSchema = new Schema(
   }
 );
 
-const Blogs = model("blogs", blogsSchema);
+const Blogs = model('blogs', blogsSchema);
 export default Blogs;

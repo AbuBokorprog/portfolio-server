@@ -1,16 +1,16 @@
-import { catchAsync } from "../../utils/catchAsync.js";
-import { successResponse } from "../../utils/sucessResponse.js";
-import { educationServices } from "./education.services.js";
+import { catchAsync } from '../../utils/catchAsync.js';
+import { successResponse } from '../../utils/sucessResponse.js';
+import { educationServices } from './education.services.js';
 
 const createEducation = catchAsync(async (req, res) => {
   const newData = req.body;
 
-  const data = await educationServices.createExperience(newData);
+  const data = await educationServices.createEducation(newData);
 
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Education Created successfully!",
+    message: 'Education Created successfully!',
     data,
   });
 });
@@ -21,7 +21,7 @@ const retrieveAllEducation = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Education retrieve successfully!",
+    message: 'Education retrieve successfully!',
     data,
   });
 });
@@ -34,7 +34,7 @@ const updateEducation = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Education updated successfully!",
+    message: 'Education updated successfully!',
     data,
   });
 });
@@ -47,7 +47,7 @@ const deleteEducation = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Education deleted successfully!",
+    message: 'Education deleted successfully!',
     data,
   });
 });
