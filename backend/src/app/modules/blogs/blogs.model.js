@@ -12,10 +12,9 @@ const blogsSchema = new Schema(
       unique: true,
       required: true,
     },
-    categoryId: {
-      type: Schema.Types.ObjectId,
-      required: [true, 'CategoryId are required'],
-      ref: 'project-category',
+    category: {
+      type: Array,
+      required: [true, 'Category is required'],
     },
     description: {
       type: String,

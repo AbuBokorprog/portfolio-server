@@ -5,7 +5,7 @@ import { sendImageToCloudinary } from '../../utils/sendingImageToCloudinary.js';
 
 const createProjects = async (file, payload) => {
   // image name
-  const imageName = `${payload.projects_name}`;
+  const imageName = `${payload?.projects_name}-${Date.now()}`;
   // path
   const path = file?.path;
   // save cloudinary
@@ -54,11 +54,12 @@ const updateProjects = async (id, file, payload) => {
 
   if (file.path) {
     const imageName = payload?.projects_name
-      ? payload?.projects_name
+      ? `${payload?.projects_name}-${Date.now()}`
       : previousData.projects_name;
+
     const path = file?.path;
     const response = await sendImageToCloudinary(imageName, path);
-    const secureUrl = response.secure_url;
+    const secureUrl = response.secure_url || file.path;
     payload.thumbnail = secureUrl;
   }
 
