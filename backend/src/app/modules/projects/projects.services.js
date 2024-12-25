@@ -52,7 +52,7 @@ const updateProjects = async (id, file, payload) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Project not found!');
   }
 
-  if (file.path) {
+  if (file) {
     const imageName = payload?.projects_name
       ? `${payload?.projects_name}-${Date.now()}`
       : previousData.projects_name;

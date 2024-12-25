@@ -42,7 +42,7 @@ const updateBlogs = async (id, file, payload) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Blog not found!');
   }
 
-  if (file?.path) {
+  if (file) {
     const imageName = payload?.title ? payload?.title : currentBlog.title;
     const path = file?.path;
     const response = await sendImageToCloudinary(imageName, path);

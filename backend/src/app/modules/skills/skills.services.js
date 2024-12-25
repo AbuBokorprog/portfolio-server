@@ -36,7 +36,7 @@ const updateSkill = async (id, file, payload) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Skill not found!');
   }
 
-  if (file.path) {
+  if (file) {
     const imageName = payload?.technology_name
       ? `${payload?.technology_name}-${Date.now()}`
       : previousSkill?.technology_name;

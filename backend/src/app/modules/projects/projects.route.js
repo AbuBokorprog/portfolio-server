@@ -1,19 +1,19 @@
-import express from "express";
-import { ProjectsControllers } from "./projects.controllers.js";
-import validateRequest from "../../utils/validationRequest.js";
+import express from 'express';
+import { ProjectsControllers } from './projects.controllers.js';
+import validateRequest from '../../utils/validationRequest.js';
 import {
   createProjectValidation,
   updateProjectValidation,
-} from "./project.validation.js";
-import Auth from "../../middleware/auth.js";
-import { upload } from "../../utils/sendingImageToCloudinary.js";
+} from './project.validation.js';
+import Auth from '../../middleware/auth.js';
+import { upload } from '../../utils/sendingImageToCloudinary.js';
 
 const route = express.Router();
 
 route.post(
-  "/",
-  Auth("admin"),
-  upload.single("file"),
+  '/',
+  Auth('admin'),
+  upload.single('file'),
   (req, res, next) => {
     req.body = JSON.parse(req.body.data);
     next();
@@ -22,14 +22,14 @@ route.post(
   ProjectsControllers.createProjects
 );
 
-route.get("/", ProjectsControllers.retrieveAllProjects);
+route.get('/', ProjectsControllers.retrieveAllProjects);
 
-route.get("/:id", ProjectsControllers.retrieveSingleProject);
+route.get('/:id', ProjectsControllers.retrieveSingleProject);
 
 route.put(
-  "/:id",
-  Auth("admin"),
-  upload.single("file"),
+  '/:id',
+  Auth('admin'),
+  upload.single('file'),
   (req, res, next) => {
     req.body = JSON.parse(req.body.data);
     next();
@@ -38,6 +38,6 @@ route.put(
   ProjectsControllers.updateProjects
 );
 
-route.delete("/:id", Auth("admin"), ProjectsControllers.deleteProjects);
+route.delete('/:id', Auth('admin'), ProjectsControllers.deleteProjects);
 
 export const ProjectRoute = route;
