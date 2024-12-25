@@ -1,6 +1,6 @@
-import { catchAsync } from "../../utils/catchAsync.js";
-import { successResponse } from "../../utils/sucessResponse.js";
-import { experienceServices } from "./experience.services.js";
+import { catchAsync } from '../../utils/catchAsync.js';
+import { successResponse } from '../../utils/sucessResponse.js';
+import { experienceServices } from './experience.services.js';
 
 const createExperience = catchAsync(async (req, res) => {
   const newData = req.body;
@@ -10,7 +10,7 @@ const createExperience = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Experience Created successfully!",
+    message: 'Experience Created successfully!',
     data,
   });
 });
@@ -21,7 +21,18 @@ const retrieveAllExperience = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Retrieve all experience successfully!",
+    message: 'Retrieve all experience successfully!',
+    data,
+  });
+});
+const retrieveSingleExperience = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const data = await experienceServices.retrieveSingleExperience(id);
+
+  successResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Retrieve experience successfully!',
     data,
   });
 });
@@ -34,7 +45,7 @@ const updateExperience = catchAsync(async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     status: true,
-    message: "Experience updated successfully!",
+    message: 'Experience updated successfully!',
     data,
   });
 });
@@ -47,7 +58,7 @@ const deleteExperience = async (req, res) => {
   successResponse(res, {
     statusCode: 200,
     status: true,
-    message: "Experience deleted successfully!",
+    message: 'Experience deleted successfully!',
     data,
   });
 };
@@ -57,4 +68,5 @@ export const experienceControllers = {
   retrieveAllExperience,
   updateExperience,
   deleteExperience,
+  retrieveSingleExperience,
 };

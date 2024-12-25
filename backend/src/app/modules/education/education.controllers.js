@@ -25,6 +25,17 @@ const retrieveAllEducation = catchAsync(async (req, res) => {
     data,
   });
 });
+const retrieveSingleEducation = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const data = await educationServices.retrieveSingleEducation(id);
+
+  successResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Education retrieve successfully!',
+    data,
+  });
+});
 
 const updateEducation = catchAsync(async (req, res) => {
   const newData = req.body;
@@ -57,4 +68,5 @@ export const educationControllers = {
   retrieveAllEducation,
   updateEducation,
   deleteEducation,
+  retrieveSingleEducation,
 };

@@ -21,6 +21,15 @@ const retrieveAllEducation = async () => {
 
   return data;
 };
+const retrieveSingleEducation = async (id) => {
+  const data = await Education.findById(id);
+
+  if (!data | (data.length < 1)) {
+    throw new AppError(httpStatus.NOT_FOUND, 'No data found!');
+  }
+
+  return data;
+};
 
 const updateEducation = async (id, payload) => {
   const data = await Education.findByIdAndUpdate(id, payload, {
@@ -50,4 +59,5 @@ export const educationServices = {
   retrieveAllEducation,
   updateEducation,
   deleteEducation,
+  retrieveSingleEducation,
 };

@@ -1,26 +1,27 @@
-import express from "express";
-import { experienceControllers } from "./experience.controllers.js";
-import validateRequest from "../../utils/validationRequest.js";
+import express from 'express';
+import { experienceControllers } from './experience.controllers.js';
+import validateRequest from '../../utils/validationRequest.js';
 import {
   createExperienceValidationSchema,
   updateExperienceValidationSchema,
-} from "./experience.validation.js";
-import Auth from "../../middleware/auth.js";
+} from './experience.validation.js';
+import Auth from '../../middleware/auth.js';
 const route = express.Router();
 
 route.post(
-  "/",
-  Auth("admin"),
+  '/',
+  Auth('admin'),
   validateRequest(createExperienceValidationSchema),
   experienceControllers.createExperience
 );
-route.get("/", experienceControllers.retrieveAllExperience);
+route.get('/', experienceControllers.retrieveAllExperience);
+route.get('/:id', experienceControllers.retrieveSingleExperience);
 route.put(
-  "/:id",
-  Auth("admin"),
+  '/:id',
+  Auth('admin'),
   validateRequest(updateExperienceValidationSchema),
   experienceControllers.updateExperience
 );
-route.delete("/:id", Auth("admin"), experienceControllers.deleteExperience);
+route.delete('/:id', Auth('admin'), experienceControllers.deleteExperience);
 
 export const experienceRoute = route;

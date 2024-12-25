@@ -16,7 +16,7 @@ export const updateExperienceValidationSchema = Joi.object({
   type: Joi.string().optional(),
   startTime: Joi.date().optional(),
   isPresent: Joi.boolean().optional(),
-  endTime: Joi.date().optional(),
+  endTime: Joi.optional(),
   company_name: Joi.string().optional(),
   company_location: Joi.string().optional(),
   short_description: Joi.string().optional(),
