@@ -32,6 +32,10 @@ const experienceSchema = new Schema(
       type: String,
       required: true,
     },
+    technologies: {
+      type: Array,
+      default: [],
+    },
     short_description: {
       type: String,
       required: true,

@@ -9,6 +9,8 @@ export const createEducationValidationSchema = Joi.object({
   short_description: Joi.optional(),
   startTime: Joi.date().required(),
   isPresent: Joi.boolean().optional(),
+  achievements: Joi.array().optional(),
+  courses: Joi.array().optional(),
   endTime: Joi.optional(),
 });
 
@@ -21,5 +23,7 @@ export const updateEducationValidationSchema = Joi.object({
   short_description: Joi.string().optional(),
   startTime: Joi.date().optional(),
   isPresent: Joi.boolean().optional(),
-  endTime: Joi.date().optional(),
+  achievements: Joi.array().optional(),
+  courses: Joi.array().optional(),
+  endTime: Joi.optional(),
 });

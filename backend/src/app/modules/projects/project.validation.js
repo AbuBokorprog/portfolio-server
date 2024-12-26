@@ -7,6 +7,10 @@ export const createProjectValidation = Joi.object({
   skills: Joi.array().required(),
   github_url: Joi.string().required(),
   view_url: Joi.string().required(),
+  duration: Joi.string().required(),
+  key_features: Joi.array().optional(),
+  challenges: Joi.array().optional(),
+  completion_date: Joi.date().required(),
 });
 
 export const updateProjectValidation = Joi.object({
@@ -16,4 +20,8 @@ export const updateProjectValidation = Joi.object({
   skills: Joi.array().optional(),
   github_url: Joi.string().optional(),
   view_url: Joi.string().optional(),
+  duration: Joi.string().optional(),
+  key_features: Joi.array().optional(),
+  challenges: Joi.array().optional(),
+  completion_date: Joi.date().optional(),
 });

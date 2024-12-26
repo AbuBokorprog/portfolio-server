@@ -10,6 +10,14 @@ const educationSchema = new Schema({
     type: String,
     required: true,
   },
+  courses: {
+    type: Array,
+    default: [],
+  },
+  achievements: {
+    type: Array,
+    default: [],
+  },
   field: {
     type: String,
     required: true,
