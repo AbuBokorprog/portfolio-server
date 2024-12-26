@@ -253,7 +253,7 @@ Contributions are welcome! To contribute:
 
 For any questions or suggestions, feel free to reach out:
 
-- **Email**: abubokor1066@.com
+- **Email**: abubokor1066@gmail.com
 
 ---
 
