@@ -10,6 +10,7 @@ import { userRoute } from '../modules/users/user.route.js';
 import { authRoute } from '../modules/auth/auth.route.js';
 import { SendMailRoute } from '../modules/sendEmail/send.mail.route.js';
 import { ReportRoute } from '../modules/reports/reports.route.js';
+import { courseRoute } from '../modules/courses/courses.route.js';
 
 const router = express.Router();
 
@@ -53,6 +54,10 @@ const appRouter = [
   {
     path: '/reports',
     route: ReportRoute,
+  },
+  {
+    path: '/courses',
+    route: courseRoute,
   },
   {
     path: '/send-mail',
